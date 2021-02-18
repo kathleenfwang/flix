@@ -1,5 +1,7 @@
 package com.kathleenwang.flixster.Models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +38,28 @@ public class Movie {
         }
         return movies;
     }
+    public static List<Movie> createMovies(Integer nums)  {
+        List<Movie> movies = new ArrayList<>();
+        for (int i =0;i<nums;i++) {
+            try {
+                movies.add(new Movie(toJson()));
+            } catch (JSONException e) {
+               Log.d("Create movies", String.valueOf(e));
+            }
+
+        }
+        return movies;
+    }
+
+    private static JSONObject toJson() throws JSONException {
+        JSONObject jo = new JSONObject();
+        jo.put("poster_path", "test");
+        jo.put("title", "test");
+        jo.put("overview", "test");
+
+        return jo;
+    }
+
 
     public String getPosterPath() {
         return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
