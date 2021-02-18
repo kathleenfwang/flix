@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.kathleenwang.flixster.Models.Movie;
 import com.kathleenwang.flixster.R;
 
@@ -41,6 +42,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     // get the movie at the passed in position
         Movie movie = movies.get(position);
         // bind the movie data into the view holder
+        // the bind method is from the ViewHolder class (because holder is ViewHolder)
         holder.bind(movie);
 
     }
@@ -57,6 +59,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         ImageView ivPoster;
 
         // each view is a new item_movie element
+        // constructor to define our view elements
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // in the constructor, we can define where the elements are coming from
@@ -64,11 +67,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvDescription = itemView.findViewById(R.id.tvDescription);
             ivPoster = itemView.findViewById(R.id.ivPoster);
         }
-
+        // binding the individual elements with the data
         public void bind(Movie movie) {
             tvTitle.setText(movie.getTitle());
             tvDescription.setText(movie.getOverview());
             // use glide library to get image
+            Glide.with(context).load(movie.getPosterPath());
         }
     }
 }
