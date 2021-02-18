@@ -1,6 +1,7 @@
 package com.kathleenwang.flixster.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -27,15 +28,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         this.movies = movies;
     }
 
-    // onCreateViewHoolder, inflate a layout from XML and return the holder
+    // onCreateViewHoolder, inflate a layout from XML and return the new view
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+       View movieView =  LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
+        return new ViewHolder(movieView);
     }
     // onBindViewHolder, populate data into the item through holder, we take the position and put into the View in Viewholder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    // get the movie at the passed in position
+        Movie movie = movies.get(position);
+        // bind the movie data into the view holder
+        holder.bind(movie);
 
     }
 
@@ -57,6 +63,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+        }
+
+        public void bind(Movie movie) {
+            tvTitle.setText(movie.getTitle());
+            tvDescription.setText(movie.getOverview());
+            // use glide library to get image
         }
     }
 }
