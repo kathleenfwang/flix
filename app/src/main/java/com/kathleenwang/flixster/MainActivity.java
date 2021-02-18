@@ -8,6 +8,8 @@ import android.util.Log;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import okhttp3.Headers;
@@ -26,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(int i, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");
                 JSONObject jsonObject = json.jsonObject;
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONArray("results");
+                    Log.d(TAG, String.valueOf(jsonArray));
+                } catch (JSONException e) {
+                    Log.d(TAG, "JSON exception",e);
+                }
+
             }
 
             @Override
