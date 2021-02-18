@@ -13,16 +13,25 @@ public class Movie {
     String title;
     String overview;
 
+    @Override
+    public String toString() {
+        return "Movie:" +
+                "posterPath='" + posterPath + '\'' +
+                ", title='" + title + '\'' +
+                ", overview='" + overview + '\'';
+    }
+
     public Movie(JSONObject jsonObject) throws JSONException {
         // takes in a JSONObject called jsonObject - we will be parsing the info from this object
         posterPath = jsonObject.getString("poster_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
     }
-
+    // function called fromJsonArray returns a List<Movie> and takes in a JSONArray called movieJsonArray
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
         List<Movie> movies = new ArrayList<>();
         for (int i =0;i<movieJsonArray.length();i++) {
+            // add a new Movie for each element in the array and add to movies list
             movies.add(new Movie(movieJsonArray.getJSONObject(i)));
         }
         return movies;
