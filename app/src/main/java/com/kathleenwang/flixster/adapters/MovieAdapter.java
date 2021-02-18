@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.kathleenwang.flixster.Models.Movie;
 import com.kathleenwang.flixster.R;
 
@@ -78,7 +79,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle.setText(movie.getTitle());
             tvDescription.setText(movie.getOverview());
             // use glide library to get image
-            Glide.with(context).load(movie.getPosterPath()).into(ivPoster);
+            Glide.with(context)
+                    .load(movie.getPosterPath())
+                    .transform(new RoundedCorners(30))
+                    .into(ivPoster);
         }
     }
 }

@@ -38,9 +38,9 @@ public class Movie {
         }
         return movies;
     }
-    public static List<Movie> createMovies(Integer nums)  {
+    public static List<Movie> createMovies(Integer num)  {
         List<Movie> movies = new ArrayList<>();
-        for (int i =0;i<nums;i++) {
+        for (int i =0;i<num;i++) {
             try {
                 movies.add(new Movie(toJson()));
             } catch (JSONException e) {
