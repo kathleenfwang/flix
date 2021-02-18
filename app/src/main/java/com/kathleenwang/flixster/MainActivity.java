@@ -23,7 +23,6 @@ import java.util.List;
 import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
-
     public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
     public static final String TAG = "MainActivity";
     // turn movies into a new ArrayList so we can populate with data we get back
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 //        movies = Movie.createMovies(20);
         // Create the adapter
         MovieAdapter movieAdapter = new MovieAdapter(this, movies);
-
         //set adapter to recycler view
         rvMovies.setAdapter(movieAdapter);
         // set layout manager on recycler view
@@ -57,9 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     Log.d(TAG, "JSON exception",e);
                 }
-
             }
-
             @Override
             public void onFailure(int i, Headers headers, String s, Throwable throwable) {
                 Log.d(TAG, "onFailure");
