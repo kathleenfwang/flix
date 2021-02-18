@@ -1,17 +1,49 @@
 package com.kathleenwang.flixster.adapters;
 
+import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kathleenwang.flixster.Models.Movie;
 import com.kathleenwang.flixster.R;
 
 import org.w3c.dom.Text;
 
-public class MovieAdapter {
+import java.util.List;
+
+// the MovieAdapter extends RecyclerView which takes in the ViewHolder  class we created in this class
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+    Context context;
+    List<Movie> movies;
+
+    // create constructor
+    public MovieAdapter(Context context, List<Movie> movies) {
+        this.context = context;
+        this.movies = movies;
+    }
+
+    // onCreateViewHoolder, inflate a layout from XML and return the holder
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
+    }
+    // onBindViewHolder, populate data into the item through holder, we take the position and put into the View in Viewholder
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         // define the elements in the view
         TextView tvTitle;
