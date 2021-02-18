@@ -46,18 +46,16 @@ public class Movie {
             } catch (JSONException e) {
                Log.d("Create movies", String.valueOf(e));
             }
-
         }
         return movies;
     }
 
     private static JSONObject toJson() throws JSONException {
-        JSONObject jo = new JSONObject();
-        jo.put("poster_path", "test");
-        jo.put("title", "test");
-        jo.put("overview", "test");
-
-        return jo;
+        JSONObject obj = new JSONObject();
+        obj.put("poster_path", "test");
+        obj.put("title", "test");
+        obj.put("overview", "test");
+        return obj;
     }
 
 

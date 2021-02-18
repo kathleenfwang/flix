@@ -78,7 +78,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle.setText(movie.getTitle());
             tvDescription.setText(movie.getOverview());
             // use glide library to get image
-            Glide.with(context).load(movie.getPosterPath());
+            Glide.with(context).load(movie.getPosterPath()).into(ivPoster);
         }
     }
 }

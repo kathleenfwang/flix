@@ -16,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,15 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
     public static final String TAG = "MainActivity";
-    // turn movies into a new ArrayList
-    List<Movie> movies;
+    // turn movies into a new ArrayList so we can populate with data we get back
+    List<Movie> movies = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
-        movies = Movie.createMovies(20);
-        Log.d(TAG, String.valueOf(movies.size()));
+//        movies = Movie.createMovies(20);
         // Create the adapter
         MovieAdapter movieAdapter = new MovieAdapter(this, movies);
 
@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject jsonObject = json.jsonObject;
                 try {
                     JSONArray results = jsonObject.getJSONArray("results");
-                    // we dont want movies to be creating new lists
-                    movies = Movie.fromJsonArray(results);
+                    // we dont want movies to be creating new lists each time, so we add all the data into our movies list
+                    movies.addAll(Movie.fromJsonArray(results));
                     // notivfy the data set changed after setting movies to equal the results
                     movieAdapter.notifyDataSetChanged();
                     Log.d(TAG, movies.toString());
