@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -63,6 +65,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         TextView tvTitle;
         TextView tvDescription;
         ImageView ivPoster;
+        RelativeLayout container;
 
         // each view is a new item_movie element
         // constructor to define our view elements
@@ -73,6 +76,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+            container = itemView.findViewById(R.id.container);
         }
         // binding the individual elements with the data
         public void bind(Movie movie) {
@@ -83,6 +87,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .load(movie.getPosterPath())
                     .transform(new RoundedCorners(30))
                     .into(ivPoster);
+
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // navigate to new activity on tap
+
+                    Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }
