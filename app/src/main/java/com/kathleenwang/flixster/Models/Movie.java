@@ -5,16 +5,19 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Parcel
 public class Movie {
     // encapsulate idea of a movie
     String posterPath;
     String title;
     String overview;
 
+    // empty constructor for Parceler
+    public Movie() {}
     @Override
     public String toString() {
         return "Movie:" +
