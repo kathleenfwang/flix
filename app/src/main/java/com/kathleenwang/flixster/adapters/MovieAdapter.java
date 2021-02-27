@@ -97,8 +97,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     // navigate to new activity on tap
                     Intent i = new Intent(context, DetailActivity.class);
                     // we want to put all of the data, not just title so we don't have to keep putting extra 1 by 1
-
-                    i.putExtra("title", movie.getTitle());
                     i.putExtra("movie", Parcels.wrap(movie));
 
                     context.startActivity(i);
