@@ -1,6 +1,7 @@
 package com.kathleenwang.flixster.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.kathleenwang.flixster.DetailActivity;
 import com.kathleenwang.flixster.Models.Movie;
 import com.kathleenwang.flixster.R;
 
@@ -87,13 +89,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .load(movie.getPosterPath())
                     .transform(new RoundedCorners(30))
                     .into(ivPoster);
-
+            // each individiual elelment in recycler view now has onclick
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // navigate to new activity on tap
+                    Intent i = new Intent(context, DetailActivity.class);
+                    i.putExtra("title", movie.getTitle());
 
-                    Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                    context.startActivity(i);
                 }
             });
         }
