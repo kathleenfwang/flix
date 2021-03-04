@@ -16,6 +16,7 @@ public class Movie {
     String title;
     String overview;
     double rating;
+    int id;
 
     // empty constructor for Parceler
     public Movie() {}
@@ -30,6 +31,7 @@ public class Movie {
     public Movie(JSONObject jsonObject) throws JSONException {
         // takes in a JSONObject called jsonObject - we will be parsing the info from this object
         posterPath = jsonObject.getString("poster_path");
+        id = jsonObject.getInt("id");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         rating = jsonObject.getDouble("vote_average");
@@ -67,7 +69,9 @@ public class Movie {
     public String getPosterPath() {
         return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
     }
-
+    public int getId() {
+        return id;
+    }
     public String getTitle() {
         return title;
     }
